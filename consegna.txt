@@ -1,0 +1,15 @@
+    tecnologie da usare: angular, node + express, mongodb
+    importare il db in allegato. Il db si compone di 3 semplici collections
+        articles, contiene la lista degli articoli in vendita con nome, prezzo, quantità disponibile
+        orders, contiene un ordine con status pending, 3 articoli nel carrello (con una quantità), e lo user a cui appartiene l'ordine
+        users, ha un solo document: lo user proprietario dell'ordine
+    obiettivo: creare un componente che mostri il checkout del carrello dello user in oggetto.
+    Requisiti obbligatori:
+        Lo stato iniziale del componente è this.state = {user_id: "5e4fde5d21146d12587ffd98"}
+        recuperare l'ordine pending relativo allo user e mostrarne il contenuto
+        mostrare il totale da pagare
+        cliccando su checkout, l'ordine si conclude e non è più pending
+    Requisiti opzionali:
+        eliminare articoli dal carrello
+        aumentare o diminuire la quantità degli articoli nel carrello
+        se ti viene in mente altro, hai carta bianca!

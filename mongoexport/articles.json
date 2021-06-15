@@ -1,0 +1,10 @@
+{
+    "_id": {
+        "machine": 766620313,
+        "inc": 155069991,
+        "time": 1582292118
+    },
+    "name": "mouse",
+    "price": 5,
+    "available_quantity": 100
+}

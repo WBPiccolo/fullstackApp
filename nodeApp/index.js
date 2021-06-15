@@ -42,10 +42,12 @@ async function listUsers(){
     }
 }
 
-
+/**
+ * Entry point che restituisce true se l'utente esiste già, altrimenti false
+ */
 app.get('/login/:userID', (req, res) => {
     console.log(new Date().toString(),'login/',req.params.userID);
-    let cursor = db.collection('users').find().toArray((err, result) => {
+    db.collection('users').find().toArray((err, result) => {
         let idUserList = result.map((user) => {
             return user._id.inc.toString();
         });

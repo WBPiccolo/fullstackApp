@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { HttpServices } from './httpServices';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'angularApp';
+  userID = new FormControl('');
+
+  constructor (private httpService: HttpServices){}
+
+  accedi () {
+    console.log(this.userID.value);
+    const userID = this.userID.value;
+
+    this.checkUserID(userID).subscribe((res) => {
+      console.log(res)
+    })
+  }
+
+
+  checkUserID(userID: string){
+    return this.httpService.checkLogin(userID);
+  }
 }

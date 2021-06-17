@@ -1,11 +1,13 @@
 import Express from "express";
 import mongodb from 'mongodb';
+import cors from 'cors';
 
 const app = Express();
+const _cors = cors();
 const port = 3000;
 const dbName = 'testDB';
 const uri = "mongodb+srv://admin:admin@cluster0.mxrir.mongodb.net/testDB?retryWrites=true&w=majority";
-
+app.use(_cors);
 let db;
 let MongoClient = mongodb.MongoClient;
 

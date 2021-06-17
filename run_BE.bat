@@ -1,3 +1,4 @@
 cd .\nodeApp
-npm start
+REM npm start
+nodemon .\index.js
 cmd /k

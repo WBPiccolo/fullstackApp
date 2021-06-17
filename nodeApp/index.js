@@ -45,16 +45,19 @@ async function listUsers(){
 }
 
 /**
- * Entry point che restituisce true se l'utente esiste già, altrimenti false
+ * Entry point che restituisce id e nome utente se l'utente esiste già, altrimenti false
  */
 app.get('/login/:userID', (req, res) => {
     console.log(new Date().toString(),'login/',req.params.userID);
     db.collection('users').find().toArray((err, result) => {
         let idUserList = result.map((user) => {
-            return user._id.inc.toString();
+            return {id: user._id.inc.toString(), username: user.name};
         });
+        console.log(idUserList);
+        let index = idUserList.map((element) => { return element.id}).indexOf(req.params.userID);
+        let response = index === -1? false : idUserList[index];
         res.send({
-            result: idUserList.includes(req.params.userID),
+            result: response,
         });
     });
 

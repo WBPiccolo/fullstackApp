@@ -49,19 +49,43 @@ async function listUsers(){
  */
 app.get('/login/:userID', (req, res) => {
     console.log(new Date().toString(),'login/',req.params.userID);
-    db.collection('users').find().toArray((err, result) => {
-        let idUserList = result.map((user) => {
-            return {id: user._id.inc.toString(), username: user.name};
-        });
-        console.log(idUserList);
-        let index = idUserList.map((element) => { return element.id}).indexOf(req.params.userID);
-        let response = index === -1? false : idUserList[index];
-        res.send({
-            result: response,
-        });
+    let userID = 0;
+    try{
+        userID = parseInt(req.params.userID)
+    } catch {
+        res.status(500).send({ error: 'Something failed!' });
+    }
+    db.collection('users').findOne({'_id.inc': userID }, (err, result) => {
+        res.send(result);
+    });
+});
+
+app.get('/orders/:userID',(req, res)=>{
+    console.log(new Date().toString(),'orders/',req.params.userID);
+    let userID = 0;
+    try{
+        userID = parseInt(req.params.userID)
+    } catch {
+        res.status(500).send({ error: 'Something failed!' });
+    }
+    db.collection('orders').findOne({'user.inc': userID }, (err, result) => {
+        res.send(result);
+    });
+})
+
+app.get('/item/:itemID', (req, res) => {
+    console.log(new Date().toString(),'item/',req.params.itemID);
+    let itemID = 0;
+    try{
+        itemID = parseInt(req.params.itemID)
+    } catch {
+        res.status(500).send({ error: 'Something failed!' });
+    }
+    db.collection('articles').findOne({'_id.inc': itemID }, (err, result) => {
+        res.send(result);
     });
 
-});
+})
 
 main().catch(console.error);
 

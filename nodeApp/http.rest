@@ -1,3 +1,9 @@
 GET http://localhost:3000/login/50
 ###
 GET http://localhost:3000/login/1484783000
+
+###
+GET http://localhost:3000/orders/1484783000
+
+###
+GET  http://localhost:3000/item/155069991
